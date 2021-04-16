@@ -5,7 +5,7 @@
   "main": "performance_test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "performance": "k6 run performance_test.js"
+    "performance": "k6 run performance_test.js; node report.js"
   },
   "repository": {
     "type": "git",

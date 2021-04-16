@@ -2,7 +2,7 @@ version: '2.1'
 orbs:
   node: circleci/node@4.2.1
 jobs:
-  install-node-example:
+  performance-k6-node:
     docker:
       - image: 'cimg/base:stable'
     steps:
@@ -21,7 +21,7 @@ jobs:
           
       - run: npm install
       - run: npm i k6-html-reporter
-      - run: npm run performance; node report.js 
+      - run: npm run performance
 
       - store_artifacts:
           path: /root/project/report    
@@ -31,4 +31,4 @@ jobs:
 workflows:
   test_my_app:
     jobs:
-      - install-node-example
+      - performance-k6-node
