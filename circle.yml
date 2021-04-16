@@ -24,7 +24,7 @@ jobs:
       - run: npm run performance
 
       - store_artifacts:
-          path: /root/project/report    
+          path: /home/circleci/project/report  
           destination: report
         
         
