@@ -20,8 +20,8 @@ jobs:
             sudo apt-get install k6
           
       - run: npm install
-      - run: npm install k6-html-reporter
-      - run: npm run performance
+      
+      - run: npm run performance  
 
       - store_artifacts:
           path: /home/circleci/project/report  
