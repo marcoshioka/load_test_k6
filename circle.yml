@@ -19,7 +19,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install k6
           
-      - run: node install npm 
+      - run: npm install
       - run: npm run performance; node report.js 
 
       - store_artifacts:
