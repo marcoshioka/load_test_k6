@@ -1,0 +1,23 @@
+{
+  "name": "load_test_k6",
+  "version": "1.0.0",
+  "description": "Load test with k6",
+  "main": "performance_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "performance": "k6 run performance_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcoshioka/load_test_k6.git"
+  },
+  "author": "Marcos Ribeiro Hioka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcoshioka/load_test_k6/issues"
+  },
+  "homepage": "https://github.com/marcoshioka/load_test_k6#readme",
+  "devDependencies": {
+    "k6-html-reporter": "^1.0.3"
+  }
+}
