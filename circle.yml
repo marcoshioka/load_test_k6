@@ -1,27 +1,32 @@
-version: 2
+version: '2.1'
+orbs:
+  node: circleci/node@4.2.1
 jobs:
-  build:
+  install-node-example:
     docker:
-      - image: cimg/node:15.14.0
+      - image: 'cimg/base:stable'
     steps:
       - checkout
-      
+      - node/install:
+          install-yarn: true
       - run: node --version
-      - save_cache:
-          key: cache-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-     
-      - run: 
-        - apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
-        - echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
-        - apt-get update
-        - apt-get install k6
-        - node install npm 
-        - npm run performance; node report.js
-        
+      - run:
+        name: Running k6 tests
+        command: |  
+          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+          echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+          sudo apt-get update
+          sudo apt-get install k6
+      
+      - run: node install npm 
+      - run: npm run performance; node report.js 
+
       - store_artifacts:
           path: /root/project/report    
           destination: report
-
+        
+        
+workflows:
+  test_my_app:
+    jobs:
+      - install-node-example
