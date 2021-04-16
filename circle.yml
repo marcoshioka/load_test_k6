@@ -24,8 +24,3 @@ jobs:
           path: /root/project/report    
           destination: report
 
-
-workflows:
-  version: 2
-  build:
-    jobs:
