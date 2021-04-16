@@ -1,33 +1,32 @@
-default: &defaults
-  parallelism: 1
-  working_directory: ~/load_test_k6
-k6_performance_tests: &k6_performance_tests
-  run:
-    name: Running k6 tests
-    # Download the k6 docker image. Alternatively, download the k6 release binary
-    # Mount a volume to access the folder and run the test
-    command: |
-      docker pull loadimpact/k6:latest
-      docker run -i -v $HOME/my-project:/ci/ loadimpact/k6:latest run /ci/loadtests/performance-test.js
 version: 2
 jobs:
-  run_performance_tests:
-    <<: *defaults
-    # Use `machine` executor because the Docker executor cannot mount volumes
-    machine: true
+  build:
+    docker:
+      - image: cimg/node:15.14.0
     steps:
       - checkout
-      - node install npm
-      - npm install
-      - npm run performance; node report.js
-      #- *k6_performance_tests
-
+      - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+      - echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+      - sudo apt-get update
+      - sudo apt-get install k6
+      - node install npm 
+      
+      - run: node --version
+      - save_cache:
+          key: cache-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+     
+      - run: npm run performance; node report.js
+        
       - store_artifacts:
           path: /root/project/report    
           destination: report
 
+
 workflows:
   version: 2
-  build-and-test:
+  build:
     jobs:
-      - run_performance_tests
+      - test
