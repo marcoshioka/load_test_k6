@@ -20,7 +20,7 @@ jobs:
             sudo apt-get install k6
           
       - run: npm install
-      - run: npm i k6-html-reporter
+      - run: npm install k6-html-reporter
       - run: npm run performance
 
       - store_artifacts:
