@@ -17,6 +17,7 @@ jobs:
     machine: true
     steps:
       - checkout
+      - node install npm
       - npm install
       - npm run performance; node report.js
       #- *k6_performance_tests
