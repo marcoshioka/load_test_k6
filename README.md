@@ -27,9 +27,9 @@ It was configured k6-html-reporter in this project.
 **k6-html-reporter**
 - Available in each "*_report" directory.
 - It displays thresholds, checks and metrics from test execution.
-- To generate report, run command for each script like this:
+- To generate report, run command for each script like this (after each test running):
 ```sh
- node conatcts_report.js
+ node contacts_report.js
 ```
 
 ![N|k6-html-reporter](https://github.com/marcoshioka/load_test_k6/blob/main/report.png)
@@ -38,6 +38,7 @@ It was configured k6-html-reporter in this project.
 ![N|k6-html-reporter](https://github.com/marcoshioka/load_test_k6/blob/main/execution.png)
 
 **Contacts**
+
 It's a script for a defined number of interations. 
 
 To execute this script, run the command:
@@ -53,6 +54,7 @@ or using script configured on package.json (that includes report generation)
 npm run contacts
 ```
 **News**
+
 It's a script for a constant-arrival-rate. 
 
 To execute this script, run the command:
@@ -68,6 +70,7 @@ or using script configured on package.json  (that includes report generation)
 npm run news
 ```
 **Pi**
+
 It's a script for a ramping-arrival-rate. 
 
 To execute this script, run the command:
