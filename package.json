@@ -21,5 +21,8 @@
   "homepage": "https://github.com/marcoshioka/load_test_k6#readme",
   "devDependencies": {
     "k6-html-reporter": "^1.0.3"
+  },
+  "dependencies": {
+    "k6": "0.0.0"
   }
 }

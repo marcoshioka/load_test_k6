@@ -1,11 +1,5 @@
 # Ignore node_modules
 node_modules/
 
-# Ignore all png files
-*.png
-
-# Ignore all mp4 files
-*.mp4
-
 # Ignore DS_Store
 **/.DS_Store
