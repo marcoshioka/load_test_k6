@@ -2,7 +2,7 @@ version: '2.1'
 orbs:
   node: circleci/node@4.2.1
 jobs:
-  performance-k6-node:
+  contacts:
     docker:
       - image: 'cimg/base:stable'
     steps:
@@ -20,15 +20,67 @@ jobs:
             sudo apt-get install k6
           
       - run: npm install
-      
-      - run: npm run performance  
+
+      - run: npm run contacts  
 
       - store_artifacts:
-          path: /home/circleci/project/report  
-          destination: report
-        
-        
+          path: /home/circleci/project/contacts_report  
+          destination: contacts_report
+                  
+  news:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+      - run: node --version
+      
+      - run:
+          name: Running k6 tests
+          command: |-
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+            echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+            sudo apt-get update
+            sudo apt-get install k6
+          
+      - run: npm install
+
+      - run: npm run news  
+
+      - store_artifacts:
+          path: /home/circleci/project/news_report  
+          destination: news_report
+
+  pi:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+      - run: node --version
+      
+      - run:
+          name: Running k6 tests
+          command: |-
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+            echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+            sudo apt-get update
+            sudo apt-get install k6
+          
+      - run: npm install
+
+      - run: npm run pi  
+
+      - store_artifacts:
+          path: /home/circleci/project/pi_report  
+          destination: pi_report
+          
+
 workflows:
   test_my_app:
     jobs:
-      - performance-k6-node
+      - contacts
+      - news
+      - pi

@@ -1,8 +1,8 @@
 const reporter = require('k6-html-reporter');
 
 const options = {
-        jsonFile: 'report/summary.json',
-        output: 'report'
+        jsonFile: 'pi_report/pi.json',
+        output: 'pi_report'
     };
 
 reporter.generateSummaryReport(options);
